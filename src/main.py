@@ -17,9 +17,13 @@ def run() -> dict:
     x, y = prepare_dataset(labels)
     x_train, x_test, y_train, y_test = split_data_into_train_and_test(x, y, number_of_classes)
 
-    mlflow.set_tracking_uri("http://localhost:5000")
-    with mlflow.start_run(run_name=f"test_run"):
-        model = UseResNet50model(number_of_classes, 32, (256,256), x[0].shape, 3)
+    mlflow.set_tracking_uri("http://127.0.0.1:5000")
+    mlflow.set_experiment("experiment name")
+    experiment = mlflow.get_experiment_by_name("experiment name")
+    with mlflow.start_run(run_name=f"test_run", experiment_id=experiment.experiment_id):
+        mlflow.tensorflow.autolog()
+        
+        model = UseResNet50model(number_of_classes, 32, [150, 150], x[0].shape, 3)
         model.build_model()
         history = model.train_model(x_train, y_train, x_test, y_test)
         plot_history(history)
