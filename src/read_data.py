@@ -25,7 +25,7 @@ def prepare_dataset(labels, path_to_dataset: str = "data/dataset/", path_to_conf
             img=load_img(os.path.join(folder,image), target_size=config['image_size'])
             np_img=img_to_array(img)
             np_img=np_img/255.0
-            dataset.append((np_img,count))
+            dataset.append((np_img.astype(np.float16),count))
         count+=1
     random.shuffle(dataset)
     x, y = zip(*dataset)
