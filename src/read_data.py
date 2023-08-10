@@ -7,12 +7,12 @@ import random
 from tensorflow.keras.preprocessing.image import load_img, img_to_array, array_to_img
 
 
-def read_data(path_to_dataset: str = "data/dataset/",) -> [str, int]:
+def read_data(path_to_dataset: str = "data/",) -> [str, int]:
     labels = list(map(os.path.basename, glob.glob(path_to_dataset+'*')))
     number_of_classes = len(labels)
     return labels, number_of_classes
 
-def prepare_dataset(labels, path_to_dataset: str = "data/dataset/", path_to_config: str = "read_data_config.json") -> [np.array, np.array]:
+def prepare_dataset(labels, path_to_dataset: str = "data/", path_to_config: str = "read_data_config.json") -> [np.array, np.array]:
     with open(path_to_config, 'r') as f:
         config = json.load(f)
 
