@@ -1,9 +1,9 @@
 {
-    "batch_size": 16,
-    "image_size": [224, 224],
+    "batch_size": 32,
+    "image_size": [32, 32],
     "validation_split": 0.20,
     "test_size": 0.20,
     "random_state": 42,
-    "patience": 3,
+    "patience": 1,
     "optimizer": "adam"
 }

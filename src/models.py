@@ -120,7 +120,8 @@ class UseVGGmodel:
     def train_model(self, x_train, y_train, x_test, y_test):
         es = EarlyStopping(monitor='val_accuracy', mode='max', patience=self.patience, restore_best_weights=True)
         self.history = self.model.fit(x_train, y_train, epochs=100, validation_split=0.1, batch_size=self.batch_size, callbacks=[es])
+        y_pred = self.model.predict(x_test)
+        # model_accuracy = self.model.evaluate(x_test, y_test, batch_size=self.batch_size, return_dict=True)
+        # self.model = self.model.predict(x_test)
 
-        model_accuracy = self.model.evaluate(x_test, y_test, batch_size=self.batch_size, return_dict=True)
-
-        return self.history, model_accuracy
+        return self.history, y_pred
