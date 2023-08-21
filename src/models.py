@@ -100,6 +100,8 @@ class UseVGGmodel:
 
         self.model.trainable = False
 
+        for l in self.model.layers: print(l.name, l.trainable)
+
         flatten_layer = layers.Flatten()
         prediction_layer = layers.Dense(self.number_of_classes, activation='softmax')
 
@@ -109,6 +111,8 @@ class UseVGGmodel:
             prediction_layer
             ])
         
+        for l in self.model.layers: print(l.name, l.trainable)
+
         self.model.summary()
 
         self.model.compile(
